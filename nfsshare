@@ -1,0 +1,17 @@
+# create a file share and allow multiple serves use it - In /etc/exports sharing webdata in this example
+/webdata clientip(rw,sync,no_all_squash,root_squash)
+
+
+dnf install nfs-utils
+systemctl start nfs-server.service
+systemctl enable nfs-server.service
+systemctl status nfs-server.service
+exportfs -arv
+exportfs  -s
+
+#On the client side
+dnf install nfs-utils nfs4-acl-tools  
+
+showmount -e 172.16.238.15
+mount -t nfs  172.16.238.15:/webdata /var/www/html
+mount | grep nfs

@@ -1,0 +1,2 @@
+#compress the folder /data/anita
+tar -zcvf anita.tar.gz /data/anita

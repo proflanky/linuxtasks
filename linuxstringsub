@@ -1,0 +1,3 @@
+#It tells sed to find all occurrences of ‘old-text’ and replace with ‘new-text’ in a file named file.xml
+sed -i 's/old-text/new-text/g' /root/file.xml
+

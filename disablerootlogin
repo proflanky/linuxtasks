@@ -1,0 +1,6 @@
+vi /etc/ssh/sshd_config
+PermitRootLogin no
+
+#restart the service
+systemctl restart sshd
+

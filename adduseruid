@@ -1,0 +1,2 @@
+#add user siva with uid 1234 and home directory /var/www/siva 
+adduser -m -d /var/www/siva -u 1234 siva
