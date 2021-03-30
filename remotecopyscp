@@ -1,0 +1,7 @@
+#Example
+scp file.txt remote_username@10.10.0.2:/remote/directory/newfilename.txt
+
+#make sure user has write permission at the destination
+sudo chown -R tony:tony /home/data
+#Copy the file
+scp /tmp/nautilus.txt.gpg tony@172.16.238.10:/home/data/nautilus.txt.gpg
