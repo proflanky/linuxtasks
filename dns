@@ -1,0 +1,9 @@
+#When you just want to try out to add a new DNS server without permanent settings, you should use this option.
+vi /etc/resolv.conf
+
+#add the name server 192.168.0.10
+
+nameserver 127.0.0.1
+nameserver 192.168.0.10
+
+Save and exit
