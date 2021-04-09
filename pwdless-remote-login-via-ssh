@@ -1,0 +1,4 @@
+#On source generate key
+ssh-keygen -t rsa
+#Copy to the respective remote server
+ssh-copy-id tony@192.168.1.10
