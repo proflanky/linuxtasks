@@ -1,0 +1,15 @@
+
+1. open /etc/issue file and add your banner details
+“Hi you are loggin in to application server”
+2. save and exit
+3. Now open /etc/ssh/sshd_config file and add the below line
+banner /etc/issue
+4. save and exit
+5. Now restart ssh service using “systemctl restart sshd”
+Its Done.
+If you want people to see banner after they login to your server, then do below steps:
+1. Edit /etc/motd file
+2. Add you banner details in the file
+“Hi welcome to application server”
+3. Save and exit
+4. restart ssh service using “systemctl restart sshd”
