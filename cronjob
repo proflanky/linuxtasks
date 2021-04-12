@@ -1,0 +1,9 @@
+yum install -y cronie
+systemctl enable crond
+systemctl start crond
+systemctl status crond
+#To edit cron
+crontab -e
+*/5 * * * * echo hello > /tmp/cron_text
+#To check for root user for example
+crontab -u root -l
