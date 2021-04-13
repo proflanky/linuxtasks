@@ -1,0 +1,6 @@
+#How to determine the state that the system currently configured to boot to :
+systemctl get-default
+How to list all currently loaded and available targets :
+systemctl list-units -t target
+# To set to GUI
+systemctl set-default graphical.target
