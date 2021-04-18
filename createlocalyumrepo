@@ -1,0 +1,11 @@
+
+#Modify the file and specify the local directory
+vi /etc/yum.repos.d/local-repos.repo
+[local-base]
+name=CentOS Base
+baseurl=file:///packages/downloaded_rpms/
+gpgcheck=0
+enabled=1
+
+#Use the command below to check for the list of repos
+yum repolist all 
