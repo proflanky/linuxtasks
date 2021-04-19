@@ -1,0 +1,17 @@
+#Script below takes an archive and copies to a remote machine
+#!/bin/bash
+cd /var/www/html/media
+zip -r file.zip /var/www/html/media
+mv file.zip /backup/
+scp /backup/file.zip clint@172.16.238.16:/backup/file.zip
+
+
+#For the script to work without password use
+#On source generate key
+ssh-keygen -t rsa
+#Copy to the respective remote server
+ssh-copy-id user@192.168.1.10
+
+# To give a user read,write and execute permission on the file
+setfacl -m u:user:rwx media_backup.sh
+
