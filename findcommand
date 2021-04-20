@@ -1,0 +1,6 @@
+#find out all files (not directories) having .css extension.
+#Copy all those files along with their parent directory structure to location /beta on same server.
+#Please make sure not to copy the entire /var/www/html/beta directory content.
+
+cd /var/www/html/beta
+find -L /var/www/html/beta/ -name "*.css" | cpio -pdm /beta
