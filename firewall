@@ -1,0 +1,7 @@
+#Allow 8095 and reject 5002
+iptables -A INPUT -j DROP -p tcp --dport 5002  
+iptables -A INPUT -j ACCEPT -p tcp --dport 8095  
+#make change permanent
+/sbin/service iptables save
+#or
+/etc/init.d/iptables save
