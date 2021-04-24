@@ -1,0 +1,6 @@
+vi /etc/security/limits.conf
+<user>          soft    nproc            <value>
+
+
+#To verify
+ulimit -a user
