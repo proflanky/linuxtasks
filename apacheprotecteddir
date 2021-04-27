@@ -1,0 +1,24 @@
+htpasswd -c /etc/httpd/.htpasswd user
+mkdir /var/www/html/itadmin 
+vi /var/www/html/itadmin/.htaccess
+
+#Add below in configuration file 
+AuthType Basic
+AuthName "Password Required"
+Require valid-user
+AuthUserFile /etc/httpd/.htpasswd
+#allow apache user to read the password file
+sudo chown apache:apache /etc/httpd/.htpasswd
+sudo chmod 0660 /etc/httpd/.htpasswd
+
+#modify httpd configuration
+vi /etc/httpd/conf/httpd.conf
+
+<Directory "/var/www/html/itadmin">
+    AllowOverride AuthConfig
+</Directory>
+#restart httpd service
+systemctl restart httpd
+
+#to test 
+curl -u user:password http://host:8080/itamin/
