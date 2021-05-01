@@ -1,0 +1,10 @@
+#add the two lines below to the apache config
+vi /etc/httpd/conf/httpd.conf
+
+ServerTokens Prod
+ServerSignature Off
+
+#disable directory listing add this line in the config
+<Directory /var/www/html/site>
+    Options -Indexes
+</Directory>
