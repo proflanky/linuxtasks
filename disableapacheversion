@@ -8,3 +8,6 @@ ServerSignature Off
 <Directory /var/www/html/site>
     Options -Indexes
 </Directory>
+
+#restart apache service to apply changes
+systemctl restart httpd
