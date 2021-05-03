@@ -1,0 +1,23 @@
+yum install -y firewalld
+#check status of firewalld
+firewall-cmd --state
+systemctl start firewalld
+systemctl enable firewalld
+#view the default zone for firewalld
+firewall-cmd --get-default-zone
+#list of available zones
+firewall-cmd --get-zones
+#To check what zones are used by nic
+firewall-cmd --get-active-zones
+#Print zone config for public 
+firewall-cmd --zone=public --list-all
+
+#Add specific port 
+firewall-cmd --zone=public --add-port=32400/tcp
+
+#accept incoming from a specific address and port
+firewall-cmd --permanent --zone=public --remove-rich-rule='rule family=ipv4 source address=172.16.238.14/24 port port=8087 protocol=tcp accept'
+
+#Save and reload port.
+firewall-cmd --reload
+
