@@ -1,6 +1,9 @@
+yum install -y iptables-services iptables
 #Allow 8095 and reject 5002
 iptables -A INPUT -j DROP -p tcp --dport 5002  
 iptables -A INPUT -j ACCEPT -p tcp --dport 8095  
+#accept from an IP address
+iptables -A INPUT -p tcp --dport 5002 -s 172.16.238.14 -j ACCEPT
 #make change permanent
 /sbin/service iptables save
 #or
