@@ -1,0 +1,39 @@
+yum install postgresql-server postgresql-contrib
+postgresql-setup initdb
+systemctl enable postgresql && sudo systemctl start postgresql
+systemctl status postgresql
+
+#Enter into postgresql database
+
+sudo -u postgres psql postgres
+
+Create user, database, and grant permission
+
+
+CREATE USER user WITH PASSWORD 'password';
+CREATE DATABASE dbname;
+GRANT ALL PRIVILEGES ON DATABASE "dbname" to user;
+
+Then set the config for local
+
+sudo vi /var/lib/pgsql/data/pg_hba.conf
+
+#Go to bottom of the config and edit
+
+local all all md5
+
+host all all 127.0.0.1/32 md5 
+
+Next open another config
+
+sudo vi /var/lib/pgsql/data/postgresql.conf
+
+Uncomment listen_address=localhost
+
+Then restart
+sudo systemctl restart postgresql
+sudo systemctl status postgresql.service
+
+#Finally Check
+
+psql -U user -d dbname -h 127.0.0.1 -W
