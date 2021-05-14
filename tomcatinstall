@@ -1,0 +1,9 @@
+yum install -y tomcat
+#To deploy a file move the war fire to the location
+cp /tmp/ROOT.war /usr/share/tomcat/webapps
+#The config of tomcat is in the location if port modification is required.
+vi /usr/share/tomcat/conf/server.xml
+systemctl start tomcat
+systemctl status tomcat
+systemctl enable tomcat
+
