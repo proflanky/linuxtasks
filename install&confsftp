@@ -1,0 +1,24 @@
+#We want to create an SFTP user that has only sftp access and no ssh access.
+useradd mark
+passwd mark
+mkdir -p /var/www/webdata
+chown mark:mark /var/www/webdata
+chown root:root /var/www
+chmod -R 755 /var/www
+chmod -R 755 /var/www/webdata
+chown -R mark /var/www/webdata
+chown -R root /var/www/webdata
+chown -R root /var/www/
+chmod -R 755 /var/www/
+vi /etc/ssh/sshd_config
+
+#Add these lines
+Match User mark
+PasswordAuthentication yes
+ChrootDirectory /var/www/webdata
+ForceCommand internal-sftp
+
+systemctl restart sshd
+
+#To verify 
+sftp mark@localhost
