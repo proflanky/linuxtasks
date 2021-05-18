@@ -1,0 +1,24 @@
+#This should be run on nfs server (nfsdata is the fileshare dir)
+yum install -y nfs-utils nfs-utils-lib
+vi /etc/exports
+/nfsdata  192.16.238.10(rw,sync,no_root_squash)
+/nfsdata  192.16.238.11(rw,sync,no_root_squash)
+/nfsdata  192.16.238.12(rw,sync,no_root_squash)
+systemctl enable nfs-server && sudo systemctl start nfs-server && sudo systemctl status nfs-server
+exportfs  -av
+sudo showmount -e hostname
+yum install -y openssh-clients openssh
+#I am copyimg a file to the nfs server here usung scp
+scp /tmp/index.html user@hostname:/tmp
+cp /tmp/index.html /nfsdata 
+
+#These should be run on the clients
+yum install -y nfs-utils nfs-utils-lib
+mkdir -p /var/www/data
+sudo mount -t nfs 172.16.238.15:/nfsdata  /var/www/data
+systemctl enable nfs-server && sudo systemctl start nfs-server && sudo systemctl status nfs-server
+vi /etc/fstab
+echo 172.16.238.15:/nfsdata  /var/www/data nfs defaults 0 0 > /etc/fstab
+
+
+

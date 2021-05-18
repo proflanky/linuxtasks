@@ -1,0 +1,18 @@
+yum --enablerepo=epel -y install mod_authnz_external pwauth 
+vi /etc/httpd/conf.d/authnz_external.conf
+#Add these lines
+<Directory /var/www/html/protected>
+AuthType Basic
+AuthName "PAM Authentication"
+AuthBasicProvider external
+AuthExternal pwauth
+require valid-user
+
+</Directory>
+#create the protected directory
+mkdir -p /var/www/html/protected
+vi /var/www/html/protected/index.html
+
+systemctl restart httpd
+systemctl status httpd
+
