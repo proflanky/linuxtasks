@@ -1,0 +1,26 @@
+#Install httpd and openssh in all clusterervers
+yum install httpd -y
+yum install -y openssh-clients
+systemctl restart sshd
+
+scp -r /home/thor/beta tony@stapp01:/tmp
+scp -r /home/thor/cluster tony@stapp01:/tmp
+scp -r /home/thor/beta steve@stapp02:/tmp
+scp -r /home/thor/cluster steve@stapp02:/tmp
+scp -r /home/thor/beta banner@stapp03:/tmp
+scp -r /home/thor/cluster banner@stapp03:/tmp
+#on the app servers
+mv /tmp/beta /var/www/html
+mv /tmp/cluster /var/www/html
+
+vi /etc/httpd/conf/httpd.conf
+systemctl start httpd
+systemctl enable httpd
+
+# From jumphost.
+curl http://stapp01:8080/beta/
+curl http://stapp01:8080/cluster/
+curl http://stapp02:8080/beta/
+curl http://stapp02:8080/cluster/
+curl http://stapp03:8080/beta/
+curl http://stapp03:8080/cluster/
